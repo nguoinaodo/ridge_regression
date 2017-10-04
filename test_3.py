@@ -6,7 +6,6 @@ from preprocessing.extract_features import \
 		training_features, training_target, \
 		test_features, kfolds
 
-
 # Test k
 kfolds_avg_lambs = []
 kfolds_avg_cost = []
@@ -43,11 +42,11 @@ for k in range(10, 15):
 		opt_cost = costs[min_i]
 
 		# Plot
-		# plt.plot(lambs, costs, 'r')
-		# plt.plot(opt_lamb, opt_cost, 'bo')
-		# plt.xlabel('lambda')
-		# plt.ylabel('cost')
-		# plt.show()
+		plt.plot(lambs, costs, 'r')
+		plt.plot(opt_lamb, opt_cost, 'bo')
+		plt.xlabel('lambda')
+		plt.ylabel('cost')
+		plt.show()
 		 
 		print 'Optimize lambda: %f' % opt_lamb
 		opt_lambs.append(opt_lamb)
@@ -64,10 +63,10 @@ for k in range(10, 15):
 		lamb_final = lamb
 
 # Kfolds result
-# plt.plot(range(20, 30, 3), kfolds_avg_cost, 'b')
-# plt.xlabel('k')
-# plt.ylabel('cost')
-# plt.show()
+plt.plot(range(20, 30, 3), kfolds_avg_cost, 'b')
+plt.xlabel('k')
+plt.ylabel('cost')
+plt.show()
 
 # Result
 print 'K: %d' % K

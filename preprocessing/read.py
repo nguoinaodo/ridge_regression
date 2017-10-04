@@ -10,4 +10,4 @@ def readCsv(filepath):
 	return rows
 
 train = readCsv('data/1-prostate-training-data.csv')
-test = readCsv('data/20142776-test.csv')
+test_predict = readCsv('data/20142776-test.csv')
