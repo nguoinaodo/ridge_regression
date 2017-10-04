@@ -32,14 +32,14 @@ class Ridge:
 		return self._w
 
 	# RSS
-	def cost1(self, X, y):
+	def cost(self, X, y):
 		pred = self.predict(X)
 		N = X.shape[0]
-		cost = np.linalg.norm(y - pred) ** 2 / N
+		cost = (np.linalg.norm(y - pred) ** 2) / N
 		return cost
 
 	# GCVE error
-	def cost(self, X, y):
+	def gcve(self, X, y):
 		pred = self.predict(X)
 		j = X.shape[0]
 		n_CV = self._N
