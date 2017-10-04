@@ -14,11 +14,11 @@ min_cost = 9999999
 K = 1
 lamb_final = 1
 
-for k in range(10, 15):
+for k in range(10,11):
 	# K-folds
 	opt_lambs = []
 	opt_costs = []
-	for train_idx, val_idx in kfolds(k, training_features):
+	for train_idx, val_idx in kfolds(k, training_features, training_target):
 		X_train = training_features[train_idx]
 		X_val = training_features[val_idx]
 		y_train = training_target[train_idx]
@@ -26,7 +26,7 @@ for k in range(10, 15):
 
 		# Validate parameter
 		range1 = np.linspace(0.000001, 10, 10000)
-		range2 = np.linspace(10, 1000, 1000)
+		range2 = np.linspace(10, 1000, 10000)
 		# range3 = np.linspace(1000, 8000000000, 10000)
 		# lambs = np.concatenate((range1, range2, range3))
 		lambs = np.concatenate((range1, range2))
@@ -64,14 +64,11 @@ for k in range(10, 15):
 		lamb_final = lamb
 
 # Kfolds result
-# plt.plot(range(20, 30, 3), kfolds_avg_cost, 'b')
-# plt.xlabel('k')
-# plt.ylabel('cost')
-# plt.show()
+plt.plot(range(10,11), kfolds_avg_cost, 'b')
+plt.xlabel('k')
+plt.ylabel('cost')
+plt.show()
 
 # Result
 print 'K: %d' % K
 print 'Final lambda: %f' % lamb_final
-# 3182600
-
-# 11.213714

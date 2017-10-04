@@ -15,7 +15,7 @@ class Ridge:
 		self._D = X.shape[1]
 		self._ytr = y = np.array(y).reshape(self._N, 1)
 		# Weights
-		self._w = np.linalg.inv(X.T.dot(X) + \
+		self._w = np.linalg.pinv(X.T.dot(X) + \
 				self._lamb * np.eye(self._D)).dot(X.T.dot(y))
 	
 	def predict(self, X):	
@@ -32,7 +32,7 @@ class Ridge:
 		return self._w
 
 	# RSS
-	def gcve(self, X, y):
+	def cost1(self, X, y):
 		pred = self.predict(X)
 		N = X.shape[0]
 		cost = np.linalg.norm(y - pred) ** 2 / N

@@ -6,7 +6,7 @@ from preprocessing.extract_features import \
 		X_train, X_val, y_train, y_val, test_features
 
 # Validate parameter
-lambs = np.linspace(15000, 25000, 30)
+lambs = np.linspace(0, 1000, 10000)
 costs = []
 for l in lambs:
 	reg = Ridge(lamb = l)
