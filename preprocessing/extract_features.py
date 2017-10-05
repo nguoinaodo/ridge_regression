@@ -8,6 +8,7 @@ training_data = np.array(train[1:]).astype(np.float)
 training_features = training_data[:, :-1]
 training_target = training_data[:, -1]
 test_predict = np.array(test_predict)[:, :-1]
+test_predict_features = test_predict.astype(np.float)
 
 # Normalize
 train_means = np.mean(training_features, axis = 0)
