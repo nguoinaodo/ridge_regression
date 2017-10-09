@@ -10,10 +10,10 @@ training_target = training_data[:, -1]
 test_predict = np.array(test_predict)[:, :-1]
 
 # Normalize
-train_means = np.mean(training_features, axis = 0)
-train_std = np.mean((training_features - train_means) ** 2, axis = 0) ** .5
-training_features = (training_features - train_means) / train_std
-test_predict_features = (test_predict.astype(np.float) - train_means) / train_std
+# train_means = np.mean(training_features, axis = 0)
+# train_std = np.mean((training_features - train_means) ** 2, axis = 0) ** .5
+# training_features = (training_features - train_means) / train_std
+# test_predict_features = (test_predict.astype(np.float) - train_means) / train_std
 
 # Train test split
 X_train, X_test, y_train, y_test = train_test_split(
