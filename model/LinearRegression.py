@@ -29,6 +29,13 @@ class LinearRegression:
 	def get_weights(self):
 		return self._w
 
+	def cost(self, X, y):
+		N = X.shape[0]
+		y = y.reshape(N)
+		pred = self.predict(X).reshape(N)
+		cost = (np.linalg.norm(y - pred) ** 2) / N
+		return cost
+
 	def plot(self):
 		"""
 		X: NxD
@@ -37,9 +44,13 @@ class LinearRegression:
 		if self._D == 2:
 			# Points
 			Xcol = self._Xtr[:, 0]
+			xmax = max(Xcol)
 			ypred = self.predict(self._Xtr)
+			ymax = max(self._ytr)
 			plt.plot(Xcol, self._ytr, 'ro')
+			plt.xlim(0, xmax + 5)
+			plt.ylim(0, ymax + 5)
 			# Line
 			plt.plot(Xcol, ypred, 'b')
 		# Show
-		plt.show()
+		plt.show()	
