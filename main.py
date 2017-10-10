@@ -19,26 +19,25 @@ for lim in limit_lamda:
 	for k in ks:
 		# Fold number k
 		print "Number of folds: %d" % k
-		lamdas_k = []
-		for train_idx, val_idx in kfolds(k, X_train, y_train):
-			features_train = X_train[train_idx]
-			features_val = X_train[val_idx]
-			target_train = y_train[train_idx]
-			target_val = y_train[val_idx]
+		lamdas_k = np.linspace(0, lim, 1000)
+		costs_k = []
+		for l in lamdas_k:
+			reg = Ridge(lamb = l)
+			costs_l = []
+			for train_idx, val_idx in kfolds(k, X_train, y_train):
+				features_train = X_train[train_idx]
+				features_val = X_train[val_idx]
+				target_train = y_train[train_idx]
+				target_val = y_train[val_idx]
 
-			lamdas_i = np.linspace(0, lim, 1000)
-			costs_i = []
-			for l in lamdas_i:
-				reg = Ridge(lamb = l)
 				reg.fit(features_train, target_train)
 				cost = reg.cost(features_val, target_val)
-				costs_i.append(cost)
-			# Min cost
-			min_i = np.argmin(costs_i)
-			lamdas_k.append(lamdas_i[min_i])
-
-		# Avg lamda with number of folds k
-		lamda_k = np.average(lamdas_k)
+				costs_l.append(cost)
+			cost_l = np.average(costs_l)
+			costs_k.append(cost_l)	
+		# Lamda with min average cost
+		min_id = np.argmin(costs_k)
+		lamda_k = lamdas_k[min_id]
 		lamdas.append(lamda_k)
 		print "lamda_k = %f" % lamda_k
 
